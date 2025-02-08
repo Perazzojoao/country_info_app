@@ -30,3 +30,11 @@ export interface PopulationCount {
 }
 
 export type FlagData = string
+
+export interface BodyCountryCode {
+	country_code: string
+}
+
+export interface BodyCountryName {
+	country_name: string
+}
