@@ -13,6 +13,14 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    exposedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type'],
+    maxAge: 120,
+  });
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   await app.listen(8000);
 }
