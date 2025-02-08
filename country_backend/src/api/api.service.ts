@@ -47,7 +47,6 @@ export class ApiService {
       body: JSON.stringify({ country: countryName }),
     });
     const data: TResponseFlagUrl = await response.json();
-    console.log('data: ', data);
     return data.data?.flag || ""
   }
 }
