@@ -4,6 +4,7 @@ import {
   TPopulationData,
   TResponseAvaliableCountries,
   TResponseBorderCountries,
+  TResponseFlagUrl,
   TResponsePopulationData,
 } from './types/apiTypes';
 
@@ -25,27 +26,28 @@ export class ApiService {
     return borderResponse.borders;
   }
 
-  async getPopulationData(countryCode: string): Promise<TPopulationData> {
+  async getPopulationData(countryName: string): Promise<TPopulationData> {
     const response = await fetch(`${this.populationDataUrl}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ iso3: countryCode }),
+      body: JSON.stringify({ country: countryName }),
     });
     const populationResponse = await response.json();
     return populationResponse.data;
   }
 
-  async getFlagUrl(countryCode: string): Promise<string> {
+  async getFlagUrl(countryName: string): Promise<string> {
     const response = await fetch(`${this.flagUrl}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ iso3: countryCode }),
+      body: JSON.stringify({ country: countryName }),
     });
-    const data = await response.json();
-    return data.data.flag;
+    const data: TResponseFlagUrl = await response.json();
+    console.log('data: ', data);
+    return data.data?.flag || ""
   }
 }
