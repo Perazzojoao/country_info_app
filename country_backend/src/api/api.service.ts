@@ -5,7 +5,6 @@ import {
   TResponseAvaliableCountries,
   TResponseBorderCountries,
   TResponseFlagUrl,
-  TResponsePopulationData,
 } from './types/apiTypes';
 
 @Injectable()
