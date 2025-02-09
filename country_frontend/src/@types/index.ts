@@ -1,7 +1,7 @@
 export interface ApiResponse {
 	statusCode: number
 	message: string
-	data: AvailableCountry[] | BorderCountry[] | PopulationResponse | FlagData
+	data: AvailableCountry[] | BorderCountry | PopulationResponse | FlagData
 }
 
 export interface AvailableCountry {
@@ -14,7 +14,7 @@ export interface BorderCountry {
 	officialName: string
 	countryCode: string
 	region: string
-	borders: any
+	borders: BorderCountry[]
 }
 
 export interface PopulationResponse {

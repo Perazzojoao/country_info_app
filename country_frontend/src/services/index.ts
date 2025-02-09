@@ -30,7 +30,7 @@ export const getAvailableCountries = async (): Promise<AvailableCountry[] | Erro
 	return data
 }
 
-export const getBorderCountries = async (countryCode: string): Promise<BorderCountry[] | ErrorResponse> => {
+export const getBorderCountries = async (countryCode: string): Promise<BorderCountry | ErrorResponse> => {
 	const response = await fetch(`${BASE_URL}/country-info/border`, {
 		method: 'POST',
 		headers: {
@@ -50,7 +50,7 @@ export const getBorderCountries = async (countryCode: string): Promise<BorderCou
 		}
 	}
 
-	const data = resp.data as BorderCountry[]
+	const data = resp.data as BorderCountry
 	return data
 }
 
@@ -85,10 +85,7 @@ export const getFlagUrl = async (countryCode: string): Promise<FlagData | ErrorR
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({ country_name: countryCode }),
-		cache: 'force-cache',
-		next: {
-			revalidate: REVALIDATE_TIME,
-		},
+		cache: 'no-cache',
 	})
 	const resp: ApiResponse = await response.json()
 	if (!response.ok) {

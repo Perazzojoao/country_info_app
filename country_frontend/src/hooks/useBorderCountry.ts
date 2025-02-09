@@ -2,7 +2,7 @@ import { BorderCountry } from '@/@types'
 import { useQuery } from '@tanstack/react-query'
 
 export default function useBorderCountries(countryCode: string) {
-	const { data, error, isLoading, refetch } = useQuery<BorderCountry[]>({
+	const { data, error, isLoading, refetch } = useQuery<BorderCountry>({
 		queryKey: ['border'],
 		queryFn: () =>
 			fetch(`/api/country-info/border`, {
@@ -14,7 +14,7 @@ export default function useBorderCountries(countryCode: string) {
 			}).then(res => res.json()),
 	})
 
-	const borderList = data ?? []
+	const borderList = data
 
 	return { borderList, error, isLoading, refetch }
 }
