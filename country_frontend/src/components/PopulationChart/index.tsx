@@ -77,19 +77,19 @@ const PopulationChart = ({ name }: PopulationChartProps) => {
             }
           />
           <Line
-            dataKey="value"
-            type="linear"
-            stroke="var(--color-value)"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
             dataKey="year"
             type="linear"
             stroke="var(--color-value)"
             strokeWidth={2}
             dot={false}
             aria-hidden
+          />
+          <Line
+            dataKey="value"
+            type="linear"
+            stroke="var(--color-value)"
+            strokeWidth={2}
+            dot={false}
           />
 
         </LineChart>

@@ -9,7 +9,7 @@ import {
 import CountryCard from "../CountryCard";
 import { NEXT_PUBLIC_URL } from "@/services/baseUrl";
 import { BorderCountry } from "@/@types";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 
 type BorderWidgetProps = {

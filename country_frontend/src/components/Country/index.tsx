@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import BorderWidget from "../BorderWidget";
 import { NEXT_PUBLIC_URL } from "@/services/baseUrl";
-import PopulationChart from "../PopulationChart";
 import PopulationCard from "../PopulationCard";
+import Image from "next/image";
 
 type CountryPageProps = {
   name: string;
@@ -36,8 +36,8 @@ const Country = ({ name, countryCode }: CountryPageProps) => {
     <div className="mt-8">
       <h1 className="font-semibold text-3xl sm:text-5xl mb-6">{name}</h1>
       <div className="w-full h-full flex items-center justify-center mb-6">
-        <img
-          src={flagUrl || undefined}
+        <Image
+          src={flagUrl || ""}
           alt={`${name} flag`}
           className="w-full h-full object-cover rounded-md"
         />
