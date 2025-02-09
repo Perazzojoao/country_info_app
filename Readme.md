@@ -42,13 +42,20 @@ Ensure you have the following installed:
    This command installs the dependencies for both the backend and frontend services.
 
 4. **Set up environment variables**
-- Create a .env file by copying the sample file:
 
-  ```bash
-  cp .env.sample .env
-  ```
+  - For the backend service:
+    ```bash
+    cp country_backend/.env.example country_backend/.env
+    ```
+    Then update the environment variables in the `country_backend/.env` file.
 
-- Update the environment variables in the .env file as needed.
+  - For the frontend service:
+    ```bash
+    cp country_frontend/.env.example country_frontend/.env
+    ```
+    Then update the environment variables in the `country_frontend/.env` file.
+
+  **Note:** Ensure that the environment variable `BASE_URL`, in the frontend service, has the same port value as `PORT` in the backend service. By default, the backend service runs on port 8000.
 
 ## Running the Project
 
