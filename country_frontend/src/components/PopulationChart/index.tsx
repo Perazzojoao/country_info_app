@@ -43,7 +43,7 @@ const PopulationChart = ({ name }: PopulationChartProps) => {
     });
   }, [name]);
 
-  if (!populationCount.length || populationCount.length === 0) return null;
+  if (!populationCount?.length || populationCount?.length === 0) return null;
 
   return (
     <div className="w-full mx-auto">

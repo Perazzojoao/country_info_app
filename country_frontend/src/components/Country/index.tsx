@@ -12,7 +12,7 @@ type CountryPageProps = {
 }
 
 const Country = ({ name, countryCode }: CountryPageProps) => {
-  const [flagUrl, setFlagUrl] = useState<string>("");
+  const [flagUrl, setFlagUrl] = useState<string | null>(null);
 
   async function fetchFlagUrl() {
     const flagUrl = await fetch(`${NEXT_PUBLIC_URL}/api/country-info/flag`, {
@@ -36,11 +36,15 @@ const Country = ({ name, countryCode }: CountryPageProps) => {
     <div className="mt-8">
       <h1 className="font-semibold text-3xl sm:text-5xl mb-6">{name}</h1>
       <div className="w-full h-full flex items-center justify-center mb-6">
-        <Image
-          src={flagUrl || ""}
-          alt={`${name} flag`}
-          className="w-full h-full object-cover rounded-md"
-        />
+        {typeof flagUrl === 'string' &&
+          <Image
+            src={flagUrl}
+            alt={`${name} flag`}
+            width={200}
+            height={200}
+            className="w-full h-full object-cover rounded-md"
+          />
+        }
       </div>
       <div className="flex flex-col gap-4">
         <BorderWidget countryCode={countryCode} />
