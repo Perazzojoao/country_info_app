@@ -16,7 +16,7 @@ const CountriesList = () => {
   return (
     <div>
       <SearchInput handleSearchChange={handleSearchChange} placeHolder="Search for country" />
-      <h1>Countries List</h1>
+      <h1 className="font-semibold text-primary text-xl sm:text-3xl mb-4">Country List</h1>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
         {countriesList
           .filter((country) => country.name.toLowerCase().includes(search.toLowerCase()))
