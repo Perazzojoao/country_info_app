@@ -18,8 +18,10 @@ const CountryCard = ({ countryCode, name }: CountryCardProps) => {
     <Card>
       <CardHeader>
         <CardTitle>
-          <Link href={"/"} className="hover:cursor-pointer hover:text-primary transition-all">
-            {name}
+          <Link href={`/country?countryCode=${countryCode}&name=${name}`} className="hover:cursor-pointer hover:text-primary transition-all">
+            <span className="text-lg sm:text-xl font-semibold">
+              {name}
+            </span>
           </Link>
         </CardTitle>
         <CardDescription>Country code: {countryCode}</CardDescription>
