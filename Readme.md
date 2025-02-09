@@ -1,9 +1,9 @@
-# Project Name
+# Country Info App
 
-A brief description of what the project does and its purpose.
+This is a full-stack web application that displays information about countries. The application consists of two services: a backend service that provides country data and a frontend service that displays the data.
 
 ## Table of Contents
-- [Project Name](#project-name)
+- [Country Info App](#country-info-app)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
@@ -74,6 +74,16 @@ To build the project for production, run the following command:
 make build
 ```
 This command runs the build process for both the backend and frontend.
+
+Or you can build each service separately:
+- **Backend:**
+  ```bash
+  make build-backend
+  ```
+- **Frontend:**
+  ```bash
+  make build-frontend
+  ```
 
 ### Production Mode
 After building the project, you can start the services in production mode:
