@@ -1,0 +1,48 @@
+'use client'
+
+import { useEffect, useState } from "react";
+import BorderWidget from "../BorderWidget";
+import { NEXT_PUBLIC_URL } from "@/services/baseUrl";
+
+type CountryPageProps = {
+  name: string;
+  countryCode: string;
+}
+
+const Country = ({ name, countryCode }: CountryPageProps) => {
+  const [flagUrl, setFlagUrl] = useState<string>("");
+
+  async function fetchFlagUrl() {
+    const flagUrl = await fetch(`${NEXT_PUBLIC_URL}/api/country-info/flag`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ country_name: name }),
+    })
+    const decodedFlagUrl: string = await flagUrl.json();
+
+    return decodedFlagUrl;
+  }
+  useEffect(() => {
+    fetchFlagUrl().then((flagUrl) => {
+      setFlagUrl(flagUrl);
+    });
+  }, [countryCode, name]);
+
+  return (
+    <div className="mt-8">
+      <h1 className="font-semibold text-3xl sm:text-5xl mb-6">{name}</h1>
+      <div className="w-full h-full flex items-center justify-center mb-4">
+        <img
+          src={flagUrl || undefined}
+          alt={name}
+          className="w-full h-full object-cover rounded-md"
+        />
+      </div>
+      <BorderWidget countryCode={countryCode} />
+    </div>
+  );
+}
+
+export default Country;
