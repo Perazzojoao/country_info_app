@@ -9,9 +9,11 @@ import {
 
 @Injectable()
 export class ApiService {
-  private avaliableCountriesUrl = 'https://date.nager.at/api/v3/AvailableCountries';
+  private avaliableCountriesUrl =
+    'https://date.nager.at/api/v3/AvailableCountries';
   private borderCountriesUrl = 'https://date.nager.at/api/v3/CountryInfo';
-  private populationDataUrl = 'https://countriesnow.space/api/v0.1/countries/population';
+  private populationDataUrl =
+    'https://countriesnow.space/api/v0.1/countries/population';
   private flagUrl = 'https://countriesnow.space/api/v0.1/countries/flag/images';
 
   async getAvaliableCountries(): Promise<TResponseAvaliableCountries> {
@@ -19,10 +21,10 @@ export class ApiService {
     return await response.json();
   }
 
-  async getBorderCountries(countryCode: string): Promise<TBorder[]> {
+  async getBorderCountries(countryCode: string): Promise<TBorder> {
     const response = await fetch(`${this.borderCountriesUrl}/${countryCode}`);
     const borderResponse: TResponseBorderCountries = await response.json();
-    return borderResponse.borders;
+    return borderResponse;
   }
 
   async getPopulationData(countryName: string): Promise<TPopulationData> {
@@ -46,6 +48,6 @@ export class ApiService {
       body: JSON.stringify({ country: countryName }),
     });
     const data: TResponseFlagUrl = await response.json();
-    return data.data?.flag || ""
+    return data.data?.flag || '';
   }
 }

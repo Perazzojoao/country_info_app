@@ -12,7 +12,7 @@ export class CountryInfoService {
 
   async getBorderCountries(
     countryCode: SearchCountryByCodeDto,
-  ): Promise<TBorder[]> {
+  ): Promise<TBorder> {
     const code = countryCode.country_code;
     const response = await this.apiService.getBorderCountries(code);
     if (!response) {
