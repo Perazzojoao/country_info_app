@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'class-validator';
+import { appPort, corsConfig } from './app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,15 +14,9 @@ async function bootstrap() {
     }),
   );
 
-  app.enableCors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
-    exposedHeaders: ['Content-Type'],
-    allowedHeaders: ['Content-Type'],
-    maxAge: 120,
-  });
+  app.enableCors(corsConfig);
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  await app.listen(8000);
+  await app.listen(appPort);
 }
 bootstrap();
