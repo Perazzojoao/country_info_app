@@ -1,5 +1,3 @@
-.PHONY: install dev backend frontend build build-backend build-frontend start start-backend start-frontend clean
-
 # Paths
 BACKEND_DIR=./country_backend
 FRONTEND_DIR=./country_frontend
