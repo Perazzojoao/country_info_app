@@ -31,7 +31,9 @@ export default function RootLayout({
       >
         <ContextProvider>
           <Header />
-          {children}
+          <main className="px-3 sm:px-4 lg:px-5 lg:w-4/5 xl:w-4/6 mx-auto mb-8">
+            {children}
+          </main>
         </ContextProvider>
       </body>
     </html>
