@@ -1,4 +1,13 @@
-import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  MaxLength,
+  MinLength,
+  ValidateNested,
+} from 'class-validator';
+import { CreateAddressDto, UpdateAddressDto } from './create-address.dto';
+import { Type } from 'class-transformer';
 
 export class CreateUserDto {
   @IsNotEmpty({ message: 'Name is required' })
@@ -14,4 +23,9 @@ export class CreateUserDto {
   @MinLength(6, { message: 'Password must be at least 6 characters' })
   @MaxLength(25, { message: 'Password must be at most 25 characters' })
   password: string;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => CreateAddressDto)
+  address?: CreateAddressDto | UpdateAddressDto
 }
