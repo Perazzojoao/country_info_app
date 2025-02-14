@@ -5,11 +5,28 @@ import { CountryInfoModule } from './modules/country-info/country-info.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggerInterceptor } from './resources/interceptors/logger.interceptor';
 import { HttpExceptionFilter } from './resources/filters/http-exeption.filter';
+import { UsersModule } from './modules/users/users.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [AvailableCountriesModule, ApiModule, CountryInfoModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGO_URI'),
+      }),
+      inject: [ConfigService],
+    }),
+    AvailableCountriesModule,
+    ApiModule,
+    CountryInfoModule,
+    UsersModule,
+  ],
   providers: [
-     ConsoleLogger,
+    ConsoleLogger,
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggerInterceptor,
