@@ -12,6 +12,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DefaultResponse } from 'src/lib/default-response';
+import { ParseMongoIdPipe } from 'src/resources/pipes/mongo-id/mongo-id.pipe';
 
 @Controller('users')
 export class UsersController extends DefaultResponse {
@@ -36,19 +37,22 @@ export class UsersController extends DefaultResponse {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', ParseMongoIdPipe) id: string) {
     const response = await this.usersService.findOne(id);
     return this.success(response, 'User fetched successfully');
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(
+    @Param('id', ParseMongoIdPipe) id: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
     const response = await this.usersService.update(id, updateUserDto);
     return this.success(response, 'User updated successfully');
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id', ParseMongoIdPipe) id: string) {
     const response = await this.usersService.remove(id);
     return this.success(response, 'User deleted successfully');
   }
